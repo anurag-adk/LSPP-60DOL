@@ -26,8 +26,24 @@ function addNewFood(foodObj: Menu) {
   menu.push(foodObj);
 }
 
+//Type Narrowing used in getFoodDetail function which allows to define the type of the parameter based on its value
+//This is useful when you want to handle different types of inputs in a single function.
+//In this case, the function can accept either a string (food name) or a number (food id) to retrieve food details.
+
+function getFoodDetail(foodIdentifier: string | number) {
+  if (typeof foodIdentifier === "string") {
+    return menu.find(
+      (food) => food.name.toLowerCase() === foodIdentifier.toLowerCase()
+    );
+  } else {
+    return menu.find((food) => food.id === foodIdentifier);
+  }
+}
+
 function placeOrder(foodName: string) {
-  const selectedFood = menu.find((food) => food.name === foodName);
+  const selectedFood = menu.find(
+    (food) => food.name.toLowerCase() === foodName.toLowerCase()
+  );
   if (!selectedFood) {
     console.error(`${foodName} not found in menu`);
     return;
