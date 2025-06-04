@@ -1,40 +1,41 @@
 type Menu = {
+  id: number;
   name: string;
   price: number;
 };
 
 type Order = {
   id: number;
-  item: Menu; //nesting object types
-  status: "ordered" | "completed";
+  food: Menu; //nesting object types
+  status: "ordered" | "completed"; //literal and union
 };
 
 const menu: Menu[] = [
-  { name: "Salad", price: 150 },
-  { name: "Pizza", price: 450 },
-  { name: "Burger", price: 250 },
-  { name: "Lasagna", price: 700 },
-  { name: "Cheesecake", price: 600 },
+  { id: 1, name: "Salad", price: 150 },
+  { id: 2, name: "Pizza", price: 450 },
+  { id: 3, name: "Burger", price: 250 },
+  { id: 4, name: "Lasagna", price: 700 },
+  { id: 5, name: "Cheesecake", price: 600 },
 ];
 
 let cashInRegister = 1000;
 let nextOrderId = 1;
 const orderQueue: Order[] = [];
 
-function addNewItem(itemObj: Menu) {
-  menu.push(itemObj);
+function addNewFood(foodObj: Menu) {
+  menu.push(foodObj);
 }
 
-function placeOrder(itemName: string) {
-  const selectedItem = menu.find((item) => item.name === itemName);
-  if (!selectedItem) {
-    console.error(`${itemName} not found in menu`);
+function placeOrder(foodName: string) {
+  const selectedFood = menu.find((food) => food.name === foodName);
+  if (!selectedFood) {
+    console.error(`${foodName} not found in menu`);
     return;
   }
-  cashInRegister += selectedItem.price;
+  cashInRegister += selectedFood.price;
   const newOrder: Order = {
     id: nextOrderId++,
-    item: selectedItem,
+    food: selectedFood,
     status: "ordered",
   };
   orderQueue.push(newOrder);
@@ -52,8 +53,8 @@ function completeOrder(orderId: number) {
 }
 
 //Test
-addNewItem({ name: "Chicken Wings", price: 450 });
-addNewItem({ name: "Biryani", price: 400 });
+addNewFood({ id: 6, name: "Chicken Wings", price: 450 });
+addNewFood({ id: 7, name: "Biryani", price: 400 });
 
 placeOrder("Chicken Wings");
 completeOrder(1);
