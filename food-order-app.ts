@@ -35,7 +35,7 @@ function getFoodDetail(foodIdentifier: string | number) {
     return menu.find(
       (food) => food.name.toLowerCase() === foodIdentifier.toLowerCase()
     );
-  } else {
+  } else if (typeof foodIdentifier === "number") {
     return menu.find((food) => food.id === foodIdentifier);
   }
 }
@@ -71,6 +71,8 @@ function completeOrder(orderId: number) {
 //Test
 addNewFood({ id: 6, name: "Chicken Wings", price: 450 });
 addNewFood({ id: 7, name: "Biryani", price: 400 });
+
+console.log(getFoodDetail(2)); //get food by Id
 
 placeOrder("Chicken Wings");
 completeOrder(1);
