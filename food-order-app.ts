@@ -30,6 +30,8 @@ function addNewFood(foodObj: Menu) {
 //This is useful when you want to handle different types of inputs in a single function.
 //In this case, the function can accept either a string (food name) or a number (food id) to retrieve food details.
 
+//Instead of using else we should use else if  for better code practice, since sometimes we may import functions from TS to another file. TS has type safety to prevent errors but other file may not have it which will throw undefined error.
+
 function getFoodDetail(foodIdentifier: string | number) {
   if (typeof foodIdentifier === "string") {
     return menu.find(
