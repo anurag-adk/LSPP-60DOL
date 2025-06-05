@@ -22,7 +22,7 @@ let cashInRegister = 1000;
 let nextOrderId = 1;
 const orderQueue: Order[] = [];
 
-function addNewFood(foodObj: Menu) {
+function addNewFood(foodObj: Menu): void {
   menu.push(foodObj);
 }
 
@@ -32,7 +32,7 @@ function addNewFood(foodObj: Menu) {
 
 //Instead of using else we should use else if  for better code practice, since sometimes we may import functions from TS to another file. TS has type safety to prevent errors but other file may not have it which will throw undefined error.
 
-function getFoodDetail(foodIdentifier: string | number) {
+function getFoodDetail(foodIdentifier: string | number): Menu | undefined {
   if (typeof foodIdentifier === "string") {
     return menu.find(
       (food) => food.name.toLowerCase() === foodIdentifier.toLowerCase()
@@ -42,7 +42,7 @@ function getFoodDetail(foodIdentifier: string | number) {
   }
 }
 
-function placeOrder(foodName: string) {
+function placeOrder(foodName: string): Order | undefined {
   const selectedFood = menu.find(
     (food) => food.name.toLowerCase() === foodName.toLowerCase()
   );
@@ -60,7 +60,7 @@ function placeOrder(foodName: string) {
   return newOrder;
 }
 
-function completeOrder(orderId: number) {
+function completeOrder(orderId: number): Order | undefined {
   const order = orderQueue.find((order) => order.id === orderId);
   if (!order) {
     console.error(`${orderId} not found in order queue`);
