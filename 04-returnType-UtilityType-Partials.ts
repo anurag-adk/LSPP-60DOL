@@ -6,6 +6,9 @@ type User = {
   role: userRole; //from 03-literalAndUnion.ts
 };
 
+//PARTIALS
+type updatedUser = Partial<User>;
+
 const users: User[] = [
   { id: 1, username: "harry", role: "admin" },
   { id: 2, username: "ron", role: "buyer" },
@@ -23,5 +26,15 @@ function getUserDetails(username: string): User | undefined {
   return user;
 }
 
-function updateUser(id: number, changes: any) {}
+//UTILITY TYPE
+function updateUser(id: number, changes: updatedUser) {
+  const foundUser = users.find((user) => user.id === id);
+  if (!foundUser) {
+    console.error(`User with id ${id} not found`);
+    return;
+  }
+  Object.assign(foundUser, changes);
+}
+
+updateUser(3, { role: "admin" });
 console.log(getUserDetails("hermione"));
