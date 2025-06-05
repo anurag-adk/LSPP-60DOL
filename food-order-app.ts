@@ -10,16 +10,18 @@ type Order = {
   status: "ordered" | "completed"; //literal and union
 };
 
-const menu: Menu[] = [
-  { id: 1, name: "Salad", price: 150 },
-  { id: 2, name: "Pizza", price: 450 },
-  { id: 3, name: "Burger", price: 250 },
-  { id: 4, name: "Lasagna", price: 700 },
-  { id: 5, name: "Cheesecake", price: 600 },
-];
-
 let cashInRegister = 1000;
 let nextOrderId = 1;
+let nextFoodId = 1;
+
+const menu: Menu[] = [
+  { id: nextFoodId++, name: "Salad", price: 150 },
+  { id: nextFoodId++, name: "Pizza", price: 450 },
+  { id: nextFoodId++, name: "Burger", price: 250 },
+  { id: nextFoodId++, name: "Lasagna", price: 700 },
+  { id: nextFoodId++, name: "Cheesecake", price: 600 },
+];
+
 const orderQueue: Order[] = [];
 
 function addNewFood(foodObj: Menu): void {
@@ -71,8 +73,8 @@ function completeOrder(orderId: number): Order | undefined {
 }
 
 //Test
-addNewFood({ id: 6, name: "Chicken Wings", price: 450 });
-addNewFood({ id: 7, name: "Biryani", price: 400 });
+addNewFood({ id: nextFoodId++, name: "Chicken Wings", price: 450 });
+addNewFood({ id: nextFoodId++, name: "Biryani", price: 400 });
 
 console.log(getFoodDetail(2)); //get food by Id
 
@@ -80,5 +82,5 @@ placeOrder("Chicken Wings");
 completeOrder(1);
 
 console.log("Menu:", menu);
-console.log("Cash in Register:", cashInRegister);
-console.log("Order Queue:", orderQueue);
+// console.log("Cash in Register:", cashInRegister);
+// console.log("Order Queue:", orderQueue);
