@@ -24,8 +24,13 @@ const menu: Menu[] = [
 
 const orderQueue: Order[] = [];
 
-function addNewFood(foodObj: Menu): void {
-  menu.push(foodObj);
+function addNewFood(foodObj: Omit<Menu, "id">): Menu {
+  const newFood: Menu = {
+    id: nextFoodId++, //auto incrementing food id during add function
+    ...foodObj, //spread operator to copy properties from foodObj
+  };
+  menu.push(newFood);
+  return newFood;
 }
 
 //Type Narrowing used in getFoodDetail function which allows to define the type of the parameter based on its value
@@ -73,13 +78,13 @@ function completeOrder(orderId: number): Order | undefined {
 }
 
 //Test
-addNewFood({ id: nextFoodId++, name: "Chicken Wings", price: 450 });
-addNewFood({ id: nextFoodId++, name: "Biryani", price: 400 });
+addNewFood({ name: "Chicken Wings", price: 450 });
+addNewFood({ name: "Biryani", price: 400 });
 
-console.log(getFoodDetail(2)); //get food by Id
+// console.log(getFoodDetail(2)); //get food by Id
 
-placeOrder("Chicken Wings");
-completeOrder(1);
+// placeOrder("Chicken Wings");
+// completeOrder(1);
 
 console.log("Menu:", menu);
 // console.log("Cash in Register:", cashInRegister);
