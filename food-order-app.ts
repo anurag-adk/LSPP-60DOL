@@ -77,6 +77,19 @@ function completeOrder(orderId: number): Order | undefined {
   return order;
 }
 
+//For Learning Generics
+function addToArray<T>(array: T[], item: T): T[] {
+  array.push(item);
+  return array;
+}
+//Example for Generics
+addToArray<Menu>(menu, { id: nextFoodId++, name: "Pasta", price: 300 });
+addToArray<Order>(orderQueue, {
+  id: nextOrderId++,
+  food: menu[2],
+  status: "ordered",
+});
+
 //Test
 addNewFood({ name: "Chicken Wings", price: 450 });
 addNewFood({ name: "Biryani", price: 400 });
