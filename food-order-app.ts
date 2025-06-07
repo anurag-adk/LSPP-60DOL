@@ -82,6 +82,7 @@ function addToArray<T>(array: T[], item: T): T[] {
   array.push(item);
   return array;
 }
+
 //Example for Generics
 addToArray<Menu>(menu, { id: nextFoodId++, name: "Pasta", price: 300 });
 addToArray<Order>(orderQueue, {
@@ -94,11 +95,11 @@ addToArray<Order>(orderQueue, {
 addNewFood({ name: "Chicken Wings", price: 450 });
 addNewFood({ name: "Biryani", price: 400 });
 
-// console.log(getFoodDetail(2)); //get food by Id
+console.log(getFoodDetail(2)); //get food by Id
 
-// placeOrder("Chicken Wings");
-// completeOrder(1);
+placeOrder("Chicken Wings");
+completeOrder(1);
 
 console.log("Menu:", menu);
-// console.log("Cash in Register:", cashInRegister);
-// console.log("Order Queue:", orderQueue);
+console.log("Cash in Register:", cashInRegister);
+console.log("Order Queue:", orderQueue);
