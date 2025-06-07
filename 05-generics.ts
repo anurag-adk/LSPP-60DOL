@@ -18,7 +18,7 @@ function getLastElement<placeholderType>(
   array: placeholderType[]
 ): placeholderType | undefined {
   return array[array.length - 1];
-}
+} //instead of <placeholderType> we can use <T> or <U> or any other generic naming there is no restriction
 
 console.log(getLastElement(studentMarks));
 console.log(getLastElement(favouriteSpells));
